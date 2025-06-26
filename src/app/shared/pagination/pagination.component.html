@@ -1,0 +1,21 @@
+<nav [class.disabled]="totalPages < 2" aria-label="Items navigation">
+    <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+            <button class="page-link" (click)="goToPage(currentPage - 1)">
+                Previous
+            </button>
+        </li>
+        @for(index of pageIndexes; track index){
+        <li class="page-item" [class.active]="currentPage === index">
+            <button class="page-link" (click)="goToPage(index)">
+                {{ index }}
+            </button>
+        </li>
+        }
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+            <button class="page-link" (click)="goToPage(currentPage + 1)">
+                Next
+            </button>
+        </li>
+    </ul>
+</nav>

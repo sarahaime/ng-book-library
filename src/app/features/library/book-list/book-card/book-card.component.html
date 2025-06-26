@@ -1,0 +1,24 @@
+
+
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-6">
+                <img src="assets/landscape-placeholder.svg" class="img-thumbnail border-0" aria-hidden="true">
+                <p class="mb-0">By: {{book.author}}</p>
+                <p class="text-muted mb-0">Published: {{book.year}}</p>
+            </div>
+            <div class="col-6 d-flex gap-2 flex-column justify-content-between">
+                <div>
+                    <h4 class="text-primary mb-0 text-truncate">{{book.title}}</h4>
+                    <p class="text-muted mb-2">{{book.genre}}</p>
+                    <p class="mb-0 description">{{book.description}} </p> 
+                </div>
+                <div class="d-flex flex-column gap-2">
+                    <button class="btn btn-outline-info rounded" routerLink="/library/edit/{{book.id}}"> Edit </button>
+                    <button class="btn btn-outline-danger rounded" (click)="deleteBook()">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "book-library-app": {
+    "ng-book-library": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -24,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/book-library-app",
+            "outputPath": "dist/ng-book-library",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -41,7 +41,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
           },
           "configurations": {
             "production": {
@@ -71,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "book-library-app:build:production"
+              "buildTarget": "ng-book-library:build:production"
             },
             "development": {
-              "buildTarget": "book-library-app:build:development"
+              "buildTarget": "ng-book-library:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -98,7 +98,6 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
             ],
             "scripts": []
           }

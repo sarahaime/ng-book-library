@@ -1,0 +1,14 @@
+.pagination .page-item.active .page-link {
+    background-color: var(--orange-50); 
+    color: white; 
+    border-color: var(--orange-50);
+}
+  
+.pagination .page-link {
+    color: var(--orange-50); 
+}
+  
+.pagination .page-link:hover {
+    background-color: var(--orange-50); 
+    color: white; 
+}

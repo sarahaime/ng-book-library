@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+$primary: #FF7D34; //#FF630B;
+$info: #5352ED;
+$success: #2DCE89;
+$danger: #F61B46;
+$enable-cssgrid: true;
+
+html {
+    --orange-80: #AA4207;
+    --orange-50: #FF7D34;
+}
+
+@import 'bootstrap/scss/bootstrap.scss';
+
+.btn-primary, .btn-success, .btn-danger, .btn-info{
+    color: #fff;
+    &:hover{
+        color: #fff;
+    }
+}
+.btn-outline-danger, .btn-outline-primary, .btn-outline-success, .btn-info{
+    &:hover{
+        color: #fff;
+    }
+}

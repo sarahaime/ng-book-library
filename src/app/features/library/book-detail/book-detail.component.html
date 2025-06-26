@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-between mb-3 align-items-center">
+    <h1 class="text-primary">{{ bookForm.value?.id ? 'Edit' : 'Add' }} Book {{ bookForm.value?.id }} </h1>
+    <button type="button" class="btn btn-outline-secondary" routerLink="/library">Cancel</button>
+</div>          
+    
+<div class="card p-3 mt-2">
+    <h2 class="fs-5 fw-normal"> Fill up Book Details </h2>
+    <form [formGroup]="bookForm" (ngSubmit)="onSubmit()"  class="needs-validation">
+        <div class="row">
+            <div class="form-group mb-3 col-md-6">
+                <label class="form-label" for="title">Title</label>
+                <input id="title" type="text" formControlName="title" class="form-control"  placeholder="Book title" required
+                        [ngClass]="{'is-invalid': bookForm.get('title')?.touched && bookForm.get('title')?.invalid}">
+                <i *ngIf="bookForm.get('title')?.invalid && bookForm.get('title')?.touched" class="invalid-feedback">
+                    Title is required.
+                </i>
+            </div>
+              <div class="form-group mb-3 col-md-6">
+                <label class="form-label" for="author">Author </label>
+                <input id="author" type="text" formControlName="author" class="form-control"  placeholder="Author name" required
+                    [ngClass]="{'is-invalid': bookForm.get('author')?.touched && bookForm.get('author')?.invalid}">
+                <i *ngIf="bookForm.get('author')?.invalid && bookForm.get('author')?.touched" class="invalid-feedback">
+                    Author is required.
+                </i>
+            </div>
+        </div>
+      
+        <div class="row">
+        <div class="form-group col-md-6 mb-3">
+            <label class="form-label" for="year">Year</label>
+            <input id="year" type="number" formControlName="year" class="form-control"  placeholder="Book year" required
+            [ngClass]="{'is-invalid': bookForm.get('year')?.touched && bookForm.get('year')?.invalid}">
+            <i *ngIf="bookForm.get('year')?.invalid && bookForm.get('year')?.touched" class="invalid-feedback">
+                Year is required.
+            </i>
+        </div>
+        <div class="form-group col-md-6 mb-3">
+            <label class="form-label" for="genre">Genre</label>
+            <select id="genre" class="form-select" formControlName="genre" [ngClass]="{'is-invalid': bookForm.get('genre')?.touched && bookForm.get('genre')?.invalid}">
+                <option value="" disabled>Choose a genre</option>
+                <option *ngFor="let genre of genres" [value]="genre">{{genre}}</option>
+              </select>
+              <i *ngIf="bookForm.get('genre')?.invalid && bookForm.get('genre')?.touched" class="invalid-feedback">
+                Genre is required.
+            </i>
+          </div>
+
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea formControlName="description" class="form-control" id="description" rows="3"></textarea>
+        </div>
+  
+        <div class="d-flex justify-content-end mt-3 gap-2">
+            <button type="button" class="btn btn-outline-secondary" routerLink="/library">Cancel</button>
+            <button type="submit" class="btn btn-info px-4">Save</button>
+        </div>
+      </form>
+</div>
