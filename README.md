@@ -2,6 +2,10 @@
 
 A simple, modular Angular application for managing a personal book collection. It allows users to view, add, edit, and delete books. The project demonstrates best practices in Angular architecture, dependency injection, and user experience.
 
+## Demo Video
+
+[![Watch the demo](https://cdn.loom.com/sessions/thumbnails/601dd5228a3744b99aae5ff3b5dd2844-with-play.gif)](https://www.loom.com/share/601dd5228a3744b99aae5ff3b5dd2844?sid=45938eae-b761-4548-b237-400c930d2414)
+
 ---
 
 ## Features
