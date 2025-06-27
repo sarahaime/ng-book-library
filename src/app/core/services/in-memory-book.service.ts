@@ -20,7 +20,7 @@ export class InMemoryBookService extends IBookService {
     { id: 6, title: 'It Ends with Us', author: 'Colleen Hoover', year: 2016, genre: GenresEnum.ROMANCE, description: 'A powerful romance about love, resilience, and difficult choices.' },
     { id: 7, title: 'Project Hail Mary', author: 'Andy Weir', year: 2021, genre: GenresEnum.SCIENCE_FICTION, description: 'A lone astronaut must save humanity in a thrilling space adventure.' },
     { id: 8, title: 'The Silent Patient', author: 'Alex Michaelides', year: 2019, genre: GenresEnum.THRILLER, description: 'A psychotherapist unravels the mystery behind a woman who refuses to speak after a shocking crime.' },
-    { id: 9, title: 'The Alchemist', author: 'Paulo Coelho', year: 1988, genre: GenresEnum.ADVENTURE, description: 'A shepherd’s mystical journey in search of his destiny.' },
+    { id: 9, title: 'The Alchemist', author: 'Paulo Coelho', year: 1988, genre: GenresEnum.ADVENTURE, description: 'A shepherd\'s mystical journey in search of his destiny.' },
     { id: 10, title: 'Where the Crawdads Sing', author: 'Delia Owens', year: 2018, genre: GenresEnum.MYSTERY, description: 'A coming-of-age story blended with mystery in the marshes of North Carolina.' }
   ];
 
@@ -28,14 +28,13 @@ export class InMemoryBookService extends IBookService {
       const skip = (page - 1) * pageSize;
       const endIndex = skip + pageSize;
       const booksPage = this.books.slice(skip, endIndex);
-    
+      this.logger.info(`Fetched books page ${page} (size ${pageSize})`);
       return of({
         items: booksPage,
         total: this.books.length,
         page: page,
         pageSize: pageSize
       });
-    
   }
 
   getBook(id: number): Observable<IBook> {
@@ -44,6 +43,7 @@ export class InMemoryBookService extends IBookService {
       this.logger.error(`Book with id ${id} not found`);
       return throwError(() => new Error('Not found'));
     }
+    this.logger.info(`Fetched book with id ${id}`);
     return of({ ...book });
   }
 
@@ -51,6 +51,7 @@ export class InMemoryBookService extends IBookService {
     const id = Math.max(...this.books.map(b => b.id), 0) + 1;
     const newBook = { ...book, id };
     this.books.push(newBook);
+    this.logger.info(`Added book with id ${id}`);
     return of(newBook);
   }
 
@@ -61,6 +62,7 @@ export class InMemoryBookService extends IBookService {
       return throwError(() => new Error('Not found'));
     }
     this.books[index] = { ...book };
+    this.logger.info(`Updated book with id ${book.id}`);
     return of({ ...book });
   }
 
@@ -71,6 +73,7 @@ export class InMemoryBookService extends IBookService {
       return throwError(() => new Error('Not found'));
     }
     this.books = this.books.filter(b => b.id !== id);
+    this.logger.info(`Deleted book with id ${id}`);
     return of(true);
   }
 }

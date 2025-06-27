@@ -1,7 +1,6 @@
-// src/app/core/http-book.service.ts
 import { Injectable } from '@angular/core';
 import { IBookService } from '../models/book.service.interface';
-import { IBook, IPaginatedBooks } from '../models/book.interface';
+import { IBook } from '../models/book.interface';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PagedResults } from '../models/pagedResults.interface';
