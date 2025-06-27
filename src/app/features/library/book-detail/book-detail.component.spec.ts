@@ -5,14 +5,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IBookService } from '../../../core/models/book.service.interface';
 import { NotificationService } from '../../../core/services/notification.service';
 import { of, throwError } from 'rxjs';
+import { GenresEnum } from '../../../core/models/genres.enum';
 
 const mockBook = {
   id: 1,
-  title: 'Test Book',
-  author: 'Author',
-  year: 2020,
-  genre: 'Fiction',
-  description: 'desc'
+  title: 'Sarahaime bio',
+  author: 'Sarahaime Rodriguez',
+  year: 2025,
+  genre: GenresEnum.BIOGRAPHY,
+  description: 'Life and work of the author'
 };
 
 class MockActivatedRoute {
@@ -61,8 +62,8 @@ describe('BookDetailComponent', () => {
   });
 
   it('should initialize form with book data', () => {
-    expect(component.bookForm.value.title).toBe('Test Book');
-    expect(component.bookForm.value.author).toBe('Author');
+    expect(component.bookForm.value.title).toBe(mockBook.title);
+    expect(component.bookForm.value.author).toBe(mockBook.author);
   });
 
   it('should mark form as touched and not submit if invalid', () => {
@@ -74,7 +75,7 @@ describe('BookDetailComponent', () => {
   });
 
   it('should call updateBook and show notification for edit', fakeAsync(() => {
-    component.bookForm.patchValue({ id: 1, title: 'Edit', author: 'A', year: 2020, genre: 'Fiction' });
+    component.bookForm.patchValue({ id: 1, title: 'New title', author: 'Albim', year: 1889, genre: GenresEnum.CLASSIC});
     component.onSubmit();
     tick();
     expect(bookService.updateBook).toHaveBeenCalled();
@@ -83,7 +84,7 @@ describe('BookDetailComponent', () => {
   }));
 
   it('should call addBook and show notification for add', fakeAsync(() => {
-    component.bookForm.patchValue({ id: null, title: 'New', author: 'A', year: 2020, genre: 'Fiction' });
+    component.bookForm.patchValue({ id: null, title: 'New book', author: 'Sara', year: 1998, genre: GenresEnum.FANTASY});
     component.onSubmit();
     tick();
     expect(bookService.addBook).toHaveBeenCalled();
@@ -93,7 +94,7 @@ describe('BookDetailComponent', () => {
 
   it('should show error notification on save error', fakeAsync(() => {
     bookService.updateBook.and.returnValue(throwError(() => new Error('fail')));
-    component.bookForm.patchValue({ id: 1, title: 'Edit', author: 'A', year: 2020, genre: 'Fiction' });
+    component.bookForm.patchValue({ id: 1, title: 'Edit', author: 'Sara', year: 1900, genre: GenresEnum.MYSTERY });
     component.onSubmit();
     tick();
     expect(notification.show).toHaveBeenCalledWith('Save failed', 'error');

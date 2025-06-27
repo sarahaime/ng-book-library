@@ -1,26 +1,30 @@
 import { CommonModule } from '@angular/common';
+import { environment } from '../../environments/environment';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { IBookService } from './models/book.service.interface';
 import { InMemoryBookService } from './services/in-memory-book.service';
+import { HttpBookService } from './services/http-book.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-    // imports: [HttpClientModule], // uncomment to use HttpBookService
   providers: [
-    { provide: IBookService, useClass: InMemoryBookService } // comment to use HttpBookService
-    // { provide: IBookService, useClass: HttpBookService } // uncomment to use HttpBookService
+    {
+      provide: IBookService,
+      useClass: environment.useHttpBookService
+        ? HttpBookService
+        : InMemoryBookService,
+    },
   ],
-  declarations: [    
-  ],
-  imports: [
-    CommonModule,
-  ],
-  exports:[
-  ]
+  declarations: [],
+  imports: [HttpClientModule, CommonModule],
+  exports: [],
 })
-export class CoreModule { 
+export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
     if (parentModule) {
-      throw new Error('CoreModule is already loaded. Import it in the AppModule only');
+      throw new Error(
+        'CoreModule is already loaded. Import it in the AppModule only'
+      );
     }
   }
 }

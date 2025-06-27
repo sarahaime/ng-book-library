@@ -18,7 +18,7 @@ A simple, modular Angular application for managing a personal book collection. I
 
 1. **Clone the repository**
    ```bash
-   git clone <repo-url>
+   git clone https://github.com/sarahaime/ng-book-library.git
    cd ng-book-library
    ```
 2. **Install dependencies**
@@ -35,6 +35,27 @@ A simple, modular Angular application for managing a personal book collection. I
    ```bash
    npm test
    ```
+
+## Swapping Book Service Implementations
+
+You can switch between the in-memory and HTTP book service using an environment variable:
+
+1. Open `src/environments/environment.ts`.
+2. Set the `useHttpBookService` variable:
+   ```ts
+   export const environment = {
+     // ...
+     useHttpBookService: true // Use HttpBookService
+   };
+   ```
+   or
+   ```ts
+   export const environment = {
+     // ...
+     useHttpBookService: false // Use InMemoryBookService
+   };
+   ```
+   Note: to use useHttpBookService you have to run [json-server](https://www.npmjs.com/package/json-server) locally by `npm run json-server`
 
 ---
 
@@ -54,17 +75,6 @@ A simple, modular Angular application for managing a personal book collection. I
 - **Error Handling**: Global HTTP error interceptor and notification system.
 
 ---
-
-## Technologies Used
-- [Angular 18+](https://angular.io/)
-- [Bootstrap 5](https://getbootstrap.com/)
-- [RxJS](https://rxjs.dev/)
-- [TypeScript 5](https://www.typescriptlang.org/)
-- [Karma & Jasmine](https://karma-runner.github.io/) (unit testing)
-
----
-
-
 ## Assignment Requirements Coverage
 
 - **Lazy-loaded LibraryModule** at `/library`
@@ -79,29 +89,14 @@ A simple, modular Angular application for managing a personal book collection. I
 - **Global HTTP error interceptor** and **LoggerService**
 - **Unit tests** for at least one service and one component (see `/src/app/features/library/book-detail/book-detail.component.spec.ts`, `src/app/shared/pagination/pagination.component.spec.ts`, and `/src/app/core/services/in-memory-book.service.spec.ts`)
 
-## Swapping Book Service Implementations
-
-To switch between the in-memory and HTTP book service, edit the provider in `src/app/core/core.module.ts`:
-
-```ts
-{ provide: IBookService, useClass: InMemoryBookService }
-// or
-{ provide: IBookService, useClass: HttpBookService }
-```
-
-## Testing
-
-Run all unit tests with:
-
-```bash
-npm test
-```
-
-Example tests are provided for BookDetailsComponent, PaginationComponent and InMemoryBookService.
-
-## Best Practices
-
-- SOLID principles, Angular best practices, and clear code structure are followed throughout the project.
-
+---
+## Technologies Used
+- [Angular 18+](https://angular.io/)
+- [Bootstrap 5](https://getbootstrap.com/)
+- [RxJS](https://rxjs.dev/)
+- [TypeScript 5](https://www.typescriptlang.org/)
+- [Karma & Jasmine](https://karma-runner.github.io/) (unit testing)
+- [Json-server](https://www.npmjs.com/package/json-server)
+---
 ## Author
-This app was made with 🧡 by Sarahaime Rodriguez.
+This app was made by Sarahaime Rodriguez.

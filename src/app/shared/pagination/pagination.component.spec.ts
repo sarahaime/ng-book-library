@@ -23,9 +23,9 @@ describe('PaginationComponent', () => {
   });
 
   it('should calculate totalPages correctly', () => {
-    component.totalItems = 25;
-    component.pageSize = 10;
-    expect(component.totalPages).toBe(3);
+    component.totalItems = 40;
+    component.pageSize = 6;
+    expect(component.totalPages).toBe(7);
   });
 
   it('should generate correct pageIndexes', () => {
@@ -37,10 +37,10 @@ describe('PaginationComponent', () => {
   it('should emit pageChanged when goToPage is called with valid page', () => {
     spyOn(component.pageChanged, 'emit');
     component.totalItems = 30;
-    component.pageSize = 10;
+    component.pageSize = 6;
     component.currentPage = 1;
-    component.goToPage(2);
-    expect(component.pageChanged.emit).toHaveBeenCalledWith(2);
+    component.goToPage(4);
+    expect(component.pageChanged.emit).toHaveBeenCalledWith(4);
   });
 
   it('should not emit pageChanged for invalid/disabled pages', () => {
@@ -54,18 +54,18 @@ describe('PaginationComponent', () => {
     expect(component.pageChanged.emit).not.toHaveBeenCalled();
   });
 
-  it('should emit correct page when page number button is clicked', () => {
+  it('should call goToPage with correct page when page number button is clicked', () => {
     component.totalItems = 15;
     component.pageSize = 5;
     component.currentPage = 1;
     fixture.detectChanges();
     spyOn(component, 'goToPage').and.callThrough();
     const pageButtons = fixture.debugElement.queryAll(By.css('.page-item button.page-link'));
-    pageButtons[2].nativeElement.click(); // Click page 2
+    pageButtons[2].nativeElement.click(); // click page 2
     expect(component.goToPage).toHaveBeenCalledWith(2);
   });
 
-  it('should emit correct page when next/prev is clicked', () => {
+  it('should call goToPage with correct page when next/prev is clicked', () => {
     component.totalItems = 15;
     component.pageSize = 5;
     component.currentPage = 2;

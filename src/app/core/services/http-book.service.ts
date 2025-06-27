@@ -1,18 +1,32 @@
 import { Injectable } from '@angular/core';
 import { IBookService } from '../models/book.service.interface';
 import { IBook } from '../models/book.interface';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable, map } from 'rxjs';
 import { PagedResults } from '../models/pagedResults.interface';
 
 @Injectable()
 export class HttpBookService extends IBookService {
-  private api = 'https://api/books';
+  private api = 'http://localhost:3000/books';
 
   constructor(private http: HttpClient) { super(); }
 
-  getBooks(): Observable<PagedResults<IBook>> {
-    return this.http.get<PagedResults<IBook>>(this.api);
+  getBooks(page: number, pageSize: number): Observable<PagedResults<IBook>> {
+    const params = new HttpParams()
+      .set('_page', page)
+      .set('_limit', pageSize);
+
+    return this.http.get<IBook[]>(this.api, { params, observe: 'response' }).pipe(
+      map(response => {
+        const total = Number(response.headers.get('X-Total-Count')) || 0;
+        return {
+          items: response.body || [],
+          total,
+          page,
+          pageSize
+        };
+      })
+    );
   }
   getBook(id: number): Observable<IBook> {
     return this.http.get<IBook>(`${this.api}/${id}`);
