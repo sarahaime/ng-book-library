@@ -6,7 +6,7 @@ A simple, modular Angular application for managing a personal book collection. I
 
 ## Features
 - **Book List Overview**: View all books in a paginated, card-based grid.
-- **Loading & Empty States**: User-friendly loading skeletons and empty state illustrations in the list overview.
+- **Loading & Empty States**: Loading skeletons and empty state illustrations in the list overview.
 - **Add/Edit Book**: Add new books or edit existing ones with a form (title, author, year, genre, description).
 - **Delete Book**: Remove books with confirmation modal.
 - **Notifications**: Success and error notifications for user actions.
@@ -77,7 +77,7 @@ A simple, modular Angular application for managing a personal book collection. I
 - **Delete with confirmation modal**
 - **NotificationService** for success/error toasts
 - **Global HTTP error interceptor** and **LoggerService**
-- **Unit tests** for at least one service and one component (see `/src/app/features/library/book-list/book-list.component.spec.ts` and `/src/app/core/services/in-memory-book.service.spec.ts`)
+- **Unit tests** for at least one service and one component (see `/src/app/features/library/book-detail/book-detail.component.spec.ts`, `src/app/shared/pagination/pagination.component.spec.ts`, and `/src/app/core/services/in-memory-book.service.spec.ts`)
 
 ## Swapping Book Service Implementations
 
@@ -97,7 +97,7 @@ Run all unit tests with:
 npm test
 ```
 
-Example tests are provided for BookListComponent and InMemoryBookService.
+Example tests are provided for BookDetailsComponent, PaginationComponent and InMemoryBookService.
 
 ## Best Practices
 

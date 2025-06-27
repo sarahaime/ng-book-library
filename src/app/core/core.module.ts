@@ -4,11 +4,10 @@ import { IBookService } from './models/book.service.interface';
 import { InMemoryBookService } from './services/in-memory-book.service';
 
 @NgModule({
-    // imports: [HttpClientModule], // Uncomment if using HttpBookService
+    // imports: [HttpClientModule], // uncomment to use HttpBookService
   providers: [
-    // ---- SWAP SERVICE HERE ----
-    { provide: IBookService, useClass: InMemoryBookService }
-    // { provide: IBookService, useClass: HttpBookService }
+    { provide: IBookService, useClass: InMemoryBookService } // comment to use HttpBookService
+    // { provide: IBookService, useClass: HttpBookService } // uncomment to use HttpBookService
   ],
   declarations: [    
   ],
