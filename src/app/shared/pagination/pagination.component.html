@@ -5,13 +5,13 @@
                 Previous
             </button>
         </li>
-        @for(index of pageIndexes; track index){
-        <li class="page-item" [class.active]="currentPage === index">
+
+        <li *ngFor="let index of pageIndexes" class="page-item" [class.active]="currentPage === index">
             <button class="page-link" (click)="goToPage(index)">
                 {{ index }}
             </button>
         </li>
-        }
+        
         <li class="page-item" [class.disabled]="currentPage === totalPages">
             <button class="page-link" (click)="goToPage(currentPage + 1)">
                 Next

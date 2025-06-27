@@ -6,11 +6,9 @@
 <section class="container">
     <ng-container *ngIf="isLoading; else mainContent;">
         <div class="grid mb-4">
-            @for(i of [].constructor(5); track i){
-                <div class="g-col-md-6 g-col-lg-4 g-col-12">
-                    <app-book-card-loading/>
-                </div>
-            }
+            <div *ngFor="let i of [].constructor(5)" class="g-col-md-6 g-col-lg-4 g-col-12">
+                <app-book-card-loading/>
+            </div>
         </div>
     </ng-container>
 </section>
@@ -18,11 +16,11 @@
 <ng-template #mainContent>  
     <ng-container *ngIf="pagedBooks.total > 0; else emptyResults">
         <div class="grid mb-4">
-            @for(book of pagedBooks.items; track book){
-                <div class="g-col-md-6 g-col-lg-4 g-col-12">
-                    <app-book-card [book]="book" (delete)="openDeleteDialog($event)" ></app-book-card>
-                </div>
-            }
+           
+            <div *ngFor="let book of pagedBooks.items" class="g-col-md-6 g-col-lg-4 g-col-12">
+                <app-book-card [book]="book" (delete)="openDeleteDialog($event)" ></app-book-card>
+            </div>
+           
         </div>
         <app-pagination
         [totalItems]="pagedBooks.total"

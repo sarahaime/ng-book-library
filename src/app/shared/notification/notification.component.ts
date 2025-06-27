@@ -19,7 +19,7 @@ export class NotificationComponent {
     this.notificationService.notification$.pipe(
       takeUntilDestroyed(),
       tap((notification) => (this.notification = notification)),
-      debounceTime(5000),
+      debounceTime(3500),
     )
     .subscribe(() => this.notification = undefined);
   }
