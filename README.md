@@ -1,27 +1,107 @@
-# BookLibraryApp
+# NgBookLibrary
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.20.
+A simple, modular Angular application for managing a personal book collection. It allows users to view, add, edit, and delete books. The project demonstrates best practices in Angular architecture, dependency injection, and user experience.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Features
+- **Book List Overview**: View all books in a paginated, card-based grid.
+- **Loading & Empty States**: User-friendly loading skeletons and empty state illustrations in the list overview.
+- **Add/Edit Book**: Add new books or edit existing ones with a form (title, author, year, genre, description).
+- **Delete Book**: Remove books with confirmation modal.
+- **Notifications**: Success and error notifications for user actions.
+- **About Page**: Simple about section.
 
-## Code scaffolding
+---
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Setup Instructions
 
-## Build
+1. **Clone the repository**
+   ```bash
+   git clone <repo-url>
+   cd ng-book-library
+   ```
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+3. **Run the development server**
+   ```bash
+   npm start
+   ```
+   Navigate to [http://localhost:4200](http://localhost:4200) in your browser.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+4. **Run unit tests**
+   ```bash
+   npm test
+   ```
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Project Architecture
 
-## Running end-to-end tests
+- **src/app/**
+  - **core/**: Core services, models, and dependency injection (e.g., book service abstraction, logger, error interceptor).
+  - **features/**: Feature modules (e.g., library, about).
+    - **library/**: Book list, detail, card, and related UI components.
+    - **about/**: About page module and component.
+  - **shared/**: Reusable UI components (footer, notification, pagination).
+  - **app.module.ts**: Main application module, imports core, shared, and feature modules.
+  - **app-routing.module.ts**: Top-level routing, lazy-loads feature modules.
+  
+- **Service Abstraction**: The app uses an `IBookService` interface, with an in-memory implementation by default. Easily swap to an HTTP backend by changing the provider in `core.module.ts`.
+- **UI/UX**: Responsive, Bootstrap-based design with SCSS styling.
+- **Error Handling**: Global HTTP error interceptor and notification system.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+---
 
-## Further help
+## Technologies Used
+- [Angular 18+](https://angular.io/)
+- [Bootstrap 5](https://getbootstrap.com/)
+- [RxJS](https://rxjs.dev/)
+- [TypeScript 5](https://www.typescriptlang.org/)
+- [Karma & Jasmine](https://karma-runner.github.io/) (unit testing)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+
+
+## Assignment Requirements Coverage
+
+- **Lazy-loaded LibraryModule** at `/library`
+- **CoreModule** for singleton services
+- **IBook** and **IBookService** interfaces
+- **InMemoryBookService** and **HttpBookService** implementations (swap via DI)
+- **BookListComponent** (with pagination, loading, empty states)
+- **BookDetailComponent** (add/edit with Reactive Forms)
+- **Route resolver** for book detail
+- **Delete with confirmation modal**
+- **NotificationService** for success/error toasts
+- **Global HTTP error interceptor** and **LoggerService**
+- **Unit tests** for at least one service and one component (see `/src/app/features/library/book-list/book-list.component.spec.ts` and `/src/app/core/services/in-memory-book.service.spec.ts`)
+
+## Swapping Book Service Implementations
+
+To switch between the in-memory and HTTP book service, edit the provider in `src/app/core/core.module.ts`:
+
+```ts
+{ provide: IBookService, useClass: InMemoryBookService }
+// or
+{ provide: IBookService, useClass: HttpBookService }
+```
+
+## Testing
+
+Run all unit tests with:
+
+```bash
+npm test
+```
+
+Example tests are provided for BookListComponent and InMemoryBookService.
+
+## Best Practices
+
+- SOLID principles, Angular best practices, and clear code structure are followed throughout the project.
+
+## Author
+This app was made with 🧡 by Sarahaime Rodriguez.
