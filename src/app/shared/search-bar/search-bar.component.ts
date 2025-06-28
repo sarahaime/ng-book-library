@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
-  styleUrl: './search-bar.component.scss',
   standalone: true,
   imports: [CommonModule]
 })
