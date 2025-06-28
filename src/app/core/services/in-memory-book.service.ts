@@ -24,14 +24,25 @@ export class InMemoryBookService extends IBookService {
     { id: 10, title: 'Where the Crawdads Sing', author: 'Delia Owens', year: 2018, genre: GenresEnum.MYSTERY, description: 'A coming-of-age story blended with mystery in the marshes of North Carolina.' }
   ];
 
-  getBooks(page: number, pageSize: number): Observable<PagedResults<IBook>> {
+  getBooks(page: number, pageSize: number, searchTerm?: string): Observable<PagedResults<IBook>> {
+      let filteredBooks = this.books;
+      
+      if (searchTerm && typeof searchTerm === 'string' && searchTerm.trim()) {
+        const term = searchTerm.toLowerCase().trim();
+        filteredBooks = this.books.filter(book => 
+          book.title.toLowerCase().includes(term) ||
+          book.author.toLowerCase().includes(term) ||
+          book.genre.toLowerCase().includes(term)
+        );
+      }
+      
       const skip = (page - 1) * pageSize;
       const endIndex = skip + pageSize;
-      const booksPage = this.books.slice(skip, endIndex);
-      this.logger.info(`Fetched books page ${page} (size ${pageSize})`);
+      const booksPage = filteredBooks.slice(skip, endIndex);
+      this.logger.info(`Fetched books page ${page} (size ${pageSize})${searchTerm ? ` with search term: ${searchTerm}` : ''}`);
       return of({
         items: booksPage,
-        total: this.books.length,
+        total: filteredBooks.length,
         page: page,
         pageSize: pageSize
       });

@@ -7,6 +7,7 @@ import { BookListComponent } from './book-list/book-list.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 import { BookCardComponent } from './book-list/book-card/book-card.component';
 import { PaginationComponent } from '../../shared/pagination/pagination.component';
+import { SearchBarComponent } from '../../shared/search-bar/search-bar.component';
 import { BookEmptyResutlsComponent } from './book-list/book-empty-resutls/book-empty-resutls.component';
 import { BookCardLoadingComponent } from './book-list/book-card-loading/book-card-loading.component';
 
@@ -23,7 +24,8 @@ import { BookCardLoadingComponent } from './book-list/book-card-loading/book-car
     LibraryRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    PaginationComponent
+    PaginationComponent,
+    SearchBarComponent
   ]
 })
 export class LibraryModule { }

@@ -1,0 +1,13 @@
+<form (ngSubmit)="searchValue(searchInput.value)" (submit)="$event.preventDefault()">
+  <div class="search-bar border d-flex p-2 rounded gap-2 bg-light">
+    <input 
+      #searchInput
+      type="search" 
+      class="form-control bg-light border-0" 
+      [placeholder]="placeholder"
+      (keyup.enter)="searchValue(searchInput.value)" />
+    <button type="submit" class="btn btn-primary btn-rounded">
+      Search
+    </button>
+  </div>
+</form> 

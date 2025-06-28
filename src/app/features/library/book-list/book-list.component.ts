@@ -18,9 +18,9 @@ export class BookListComponent {
   isLoading: boolean = false;
   bookToDelete: IBook | undefined;
   deleteModal: any;
+  searchTerm: string = '';
   bookService = inject(IBookService);
   notificationService = inject(NotificationService);
-
 
   ngOnInit() {
     this.loadBooks();
@@ -28,7 +28,7 @@ export class BookListComponent {
 
   loadBooks() {
     this.isLoading = true;
-    this.bookService.getBooks(this.currentPage, this.pageSize).subscribe({
+    this.bookService.getBooks(this.currentPage, this.pageSize, this.searchTerm).subscribe({
       next: books =>{
         this.pagedBooks = books;
         this.isLoading = false;
@@ -38,6 +38,12 @@ export class BookListComponent {
         this.isLoading = false;
       }
     });
+  }
+
+  onSearch(searchTerm: string) {
+    this.searchTerm = searchTerm;
+    this.currentPage = 1;
+    this.loadBooks();
   }
 
   onPageChanged(nextPage: number) {

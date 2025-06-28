@@ -1,9 +1,18 @@
-
 <section class="d-flex justify-content-between mb-3 align-items-center">
     <h1 class="text-primary">Books Overview</h1>
     <button class="btn btn btn-outline-info" routerLink="/library/add">Add Book</button>
 </section>
-<section class="container">
+
+<section class="row mb-3">
+  <div class="col-12 col-md-7">
+    <app-search-bar 
+      placeholder="Search books by title, author, or genre..."
+      (search)="onSearch($event)">
+    </app-search-bar>
+  </div>
+</section>
+
+<section>
     <ng-container *ngIf="isLoading; else mainContent;">
         <div class="grid mb-4">
             <div *ngFor="let i of [].constructor(5)" class="g-col-md-6 g-col-lg-4 g-col-12">
@@ -34,9 +43,6 @@
 <ng-template #emptyResults>
     <app-book-empty-resutls/>
 </ng-template>
-
-
-
 
 
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalTitle" aria-hidden="true">

@@ -1,16 +1,16 @@
 # NgBookLibrary
-
-A simple, modular Angular application for managing a personal book collection. It allows users to view, add, edit, and delete books. The project demonstrates best practices in Angular architecture, dependency injection, and user experience.
+Ng Book Library is a simple Front End application for managing a book collection. It allows users to view, add, edit, and delete books. It is designed to demonstrate clean architecture, best practices, and modern development patterns in Angular.
 
 ## Demo Video
 
-[Watch the demo](https://cdn.loom.com/sessions/thumbnails/601dd5228a3744b99aae5ff3b5dd2844-with-play.gif)](https://www.loom.com/share/601dd5228a3744b99aae5ff3b5dd2844?sid=45938eae-b761-4548-b237-400c930d2414)
+[Watch the demo](https://www.loom.com/share/601dd5228a3744b99aae5ff3b5dd2844?sid=45938eae-b761-4548-b237-400c930d2414)
 
 ---
 
 ## Features
 - **Book List Overview**: View all books in a paginated, card-based grid.
 - **Loading & Empty States**: Loading skeletons and empty state illustrations in the list overview.
+- **Search Bar**: Search books by title, author or genre.
 - **Add/Edit Book**: Add new books or edit existing ones with a form (title, author, year, genre, description).
 - **Delete Book**: Remove books with confirmation modal.
 - **Notifications**: Success and error notifications for user actions.

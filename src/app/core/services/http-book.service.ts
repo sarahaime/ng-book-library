@@ -11,10 +11,14 @@ export class HttpBookService extends IBookService {
 
   constructor(private http: HttpClient) { super(); }
 
-  getBooks(page: number, pageSize: number): Observable<PagedResults<IBook>> {
-    const params = new HttpParams()
+  getBooks(page: number, pageSize: number, searchTerm?: string): Observable<PagedResults<IBook>> {
+    let params = new HttpParams()
       .set('_page', page)
       .set('_limit', pageSize);
+
+    if (searchTerm && typeof searchTerm === 'string' && searchTerm.trim()) {
+      params = params.set('q', searchTerm.trim());
+    }
 
     return this.http.get<IBook[]>(this.api, { params, observe: 'response' }).pipe(
       map(response => {
