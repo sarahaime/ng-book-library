@@ -3,7 +3,7 @@ Ng Book Library is a simple Front End application for managing a book collection
 
 ## Demo Video
 
-[Watch the demo](https://www.loom.com/share/601dd5228a3744b99aae5ff3b5dd2844?sid=45938eae-b761-4548-b237-400c930d2414)
+![Watch the demo](https://www.loom.com/share/601dd5228a3744b99aae5ff3b5dd2844?sid=45938eae-b761-4548-b237-400c930d2414)
 
 ---
 
